@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {MainContext} from '../../../context/MainContext';
 import {
   SafeAreaView,
@@ -13,9 +13,17 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import HideKeyboard from '../../components/hideKeyboard';
 import LogoImage from '../../assets/logo.svg';
 
+import {fetchNewsData} from '../../common/helpers';
+
 type LoginScreenProps = NativeStackScreenProps<AuthStackParams, 'Login'>;
 
 const LogInScreen: React.FC<LoginScreenProps> = ({navigation}) => {
+  useEffect(() => {
+    (async () => {
+      // await fetchNewsData();
+    })();
+  }, []);
+
   return (
     <View>
       <Text>Log In Screen</Text>

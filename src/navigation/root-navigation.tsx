@@ -24,7 +24,7 @@ function RootNavigation() {
         {!isLoading && (
           <Stack.Screen name="Loading" component={LoadingScreen} />
         )}
-        {!isAuth ? (
+        {isAuth ? (
           <Stack.Screen name="Main" component={MainNavigation} />
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigation} />

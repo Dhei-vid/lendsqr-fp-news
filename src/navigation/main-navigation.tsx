@@ -13,6 +13,10 @@ const deviceStyle = Platform.OS === 'android' && {
   height: 80,
 };
 
+const icons = {
+  home: require('../assets/home.png'),
+};
+
 const tabBarStyle = {
   // backgroundColor: lightPurple,
   // paddingBottom: 25,
@@ -58,9 +62,13 @@ function MainNavigation() {
           component={NewsListings}
           options={() => ({
             tabBarLabel: 'Home',
-            tabBarIcon: ({color}) => (
-              <Icon name="rocket" size={30} color={color} />
-            ), //something about the color did not work
+            tabBarIcon: ({color, size}) => (
+              <Image
+                source={icons.home}
+                style={{height: size, width: size}}
+                tintColor={color}
+              />
+            ),
           })}
         />
       </Tab.Navigator>

@@ -9,7 +9,16 @@ module.exports = function (baseConfig) {
   return mergeConfig(defaultConfig, {
     resolver: {
       assetExts: assetExts.filter(ext => ext !== 'svg'),
-      sourceExts: [...sourceExts, 'svg'],
+      sourceExts: [
+        ...sourceExts,
+        'svg',
+        'jsx',
+        'js',
+        'ts',
+        'tsx',
+        'cjs',
+        'json',
+      ],
     },
   });
 };
