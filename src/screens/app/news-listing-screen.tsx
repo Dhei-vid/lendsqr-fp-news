@@ -18,7 +18,7 @@ const NewsListings: React.FC<ReviewChallengeProps> = ({
   navigation: {navigate},
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const {news, status, error} = useSelector((state: RootState) => state.news);
+  const {news, status} = useSelector((state: RootState) => state.news);
 
   useEffect(() => {
     if (status === 'idle') {
@@ -33,7 +33,7 @@ const NewsListings: React.FC<ReviewChallengeProps> = ({
 
   return (
     <View style={styles.main}>
-      <Text>Hot News Today</Text>
+      <Text style={styles.heading}>Hot News Today</Text>
 
       <FlatList
         style={styles.flatList}
@@ -74,5 +74,10 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20,
   },
-  notFound: {},
+  heading: {
+    marginVertical: 20,
+  },
+  notFound: {
+    color: 'red',
+  },
 });
