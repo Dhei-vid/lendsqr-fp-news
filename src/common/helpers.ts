@@ -1,4 +1,5 @@
 import {INews} from './types';
+import {RAPID_API_KEY} from '@env';
 import axios, {AxiosResponse} from 'axios';
 import {xRapidapiHost, rapidhostname} from './constants';
 
@@ -15,13 +16,13 @@ export const fetchNewsData = async (): Promise<INews[]> => {
         lang: 'en',
       },
       headers: {
-        'x-rapidapi-key': 'fb3ea5fa49msh92c08049f996242p14b698jsne628e0cfb0d6',
-        'x-rapidapi-host': 'real-time-news-data.p.rapidapi.com',
+        'x-rapidapi-key': RAPID_API_KEY,
+        'x-rapidapi-host': xRapidapiHost,
       },
     };
 
     const response: AxiosResponse<ApiResponse> = await axios.get(
-      'https://real-time-news-data.p.rapidapi.com/top-headlines',
+      `https://${rapidhostname}/top-headlines`,
       options,
     );
 
