@@ -13,24 +13,28 @@ const windowWidth = Dimensions.get('window').width;
 
 interface INewsCard {
   data: INews;
+  onClick: () => void;
 }
 
-const NewsCard: React.FC<INewsCard> = ({data}) => {
-  const {title, published_datetime_utc, photo_url} = data;
-  const date = format(new Date(published_datetime_utc), 'MMM dd yyyy');
+const NewsCard: React.FC<INewsCard> = ({data, onClick}) => {
+  const {Title, Description, PublishedOn, Categories} = data;
+  const date = format(new Date(PublishedOn), 'MMM dd yyyy');
 
   return (
-    <TouchableOpacity style={styles.main}>
+    <TouchableOpacity style={styles.main} onPress={onClick}>
+      <Text style={styles.label}>
+        {Categories?.label ? Categories.label.toUpperCase() : 'NEWS'}
+      </Text>
       <View style={styles.cardItem}>
         <View style={styles.mataInfoContainer}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{Title}</Text>
           <View style={styles.newsMetaInfo}>
-            <Text>{date}</Text>
+            <Text>{date ? date : 'No Date'}</Text>
           </View>
         </View>
         <Image
           source={{
-            uri: photo_url ?? '',
+            uri: data.Image ?? null,
           }}
           style={styles.cardImage}
         />
@@ -71,5 +75,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 5,
+  },
+  label: {
+    color: 'green',
   },
 });

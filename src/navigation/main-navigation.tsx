@@ -4,6 +4,7 @@ import {Platform, Image} from 'react-native';
 import {useContext} from 'react';
 import {MainContext} from '../../context/MainContext';
 import NewsListings from '../screens/app/news-listing-screen';
+import AppNavigation from './app-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
@@ -59,7 +60,7 @@ function MainNavigation() {
         })}>
         <Tab.Screen
           name="Home"
-          component={NewsListings}
+          component={AppNavigation}
           options={() => ({
             tabBarLabel: 'News Listing',
             tabBarIcon: ({color, size}) => (

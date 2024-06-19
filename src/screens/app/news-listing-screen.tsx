@@ -5,11 +5,21 @@ import {RootState, AppDispatch} from '../../store/store';
 import {fetchNewsHeadlines} from '../../store/news-slice';
 import NewsCard from '../../components/news-card-component';
 import Separator from '../../components/separator';
+import {INews} from '../../common/types';
+import {AppStackParams} from '../../navigation/app-navigation';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const NewsListings = () => {
+type ReviewChallengeProps = NativeStackScreenProps<
+  AppStackParams,
+  'NewsListing'
+>;
+
+const NewsListings: React.FC<ReviewChallengeProps> = ({
+  navigation: {navigate},
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const {news, status, error} = useSelector((state: RootState) => state.news);
 
@@ -18,6 +28,11 @@ const NewsListings = () => {
       dispatch(fetchNewsHeadlines());
     }
   }, [status, dispatch]);
+
+  const handleNewsCardPress = (data: INews) => {
+    // Navigate to details screen with article data
+    navigate('NewsDetail', {data});
+  };
 
   return (
     <View style={styles.main}>
@@ -35,7 +50,12 @@ const NewsListings = () => {
           <Text style={styles.notFound}>No Results Found</Text>
         }
         ItemSeparatorComponent={Separator}
-        renderItem={data => <NewsCard data={data.item} />}
+        renderItem={data => (
+          <NewsCard
+            data={data.item}
+            onClick={() => handleNewsCardPress(data.item)}
+          />
+        )}
       />
     </View>
   );

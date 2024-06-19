@@ -8,27 +8,20 @@ export interface ApiResponse {
 }
 
 export const fetchNewsData = async (): Promise<INews[]> => {
+  const options = {
+    method: 'GET',
+    url: 'https://news67.p.rapidapi.com/v2/feed',
+    headers: {
+      'x-rapidapi-key': 'fb3ea5fa49msh92c08049f996242p14b698jsne628e0cfb0d6',
+      'x-rapidapi-host': 'news67.p.rapidapi.com',
+    },
+  };
+
   try {
-    const options = {
-      params: {
-        limit: 20,
-        country: 'US',
-        lang: 'en',
-      },
-      headers: {
-        'x-rapidapi-key': RAPID_API_KEY,
-        'x-rapidapi-host': xRapidapiHost,
-      },
-    };
-
-    const response: AxiosResponse<ApiResponse> = await axios.get(
-      `https://${rapidhostname}/top-headlines`,
-      options,
-    );
-
-    return response.data.data;
+    const response = await axios.request(options);
+    return response.data.news;
   } catch (error) {
-    console.log(error as string);
-    throw error;
+    console.error(error);
+    return [];
   }
 };
