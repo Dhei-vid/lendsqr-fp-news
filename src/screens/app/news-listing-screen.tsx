@@ -1,15 +1,17 @@
 import {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Dimensions} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState, AppDispatch} from '../../store/store';
 import {fetchNewsHeadlines} from '../../store/news-slice';
 import NewsCard from '../../components/news-card-component';
+import Separator from '../../components/separator';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const NewsListings = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {news, status, error} = useSelector((state: RootState) => state.news);
-
-  // console.log('NEWSSSSSSSSSSS ', news);
 
   useEffect(() => {
     if (status === 'idle') {
@@ -19,7 +21,7 @@ const NewsListings = () => {
 
   return (
     <View style={styles.main}>
-      <Text>News Listing Screen</Text>
+      <Text>Hot News Today</Text>
 
       <FlatList
         style={styles.flatList}
@@ -32,6 +34,7 @@ const NewsListings = () => {
         ListEmptyComponent={
           <Text style={styles.notFound}>No Results Found</Text>
         }
+        ItemSeparatorComponent={Separator}
         renderItem={data => <NewsCard data={data.item} />}
       />
     </View>
@@ -49,6 +52,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
   },
-  flatList: {},
+  flatList: {
+    flex: 1,
+    width: '100%',
+    paddingHorizontal: 20,
+  },
   notFound: {},
 });

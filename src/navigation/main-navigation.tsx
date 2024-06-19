@@ -39,7 +39,7 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: '#e91e63',
+    background: '#f1f3f5',
   },
 };
 
@@ -50,7 +50,7 @@ function MainNavigation() {
         screenOptions={() => ({
           headerShown: false,
           // tabBarShowLabel: false,
-          tabBarActiveTintColor: '#e91e63',
+          tabBarActiveTintColor: '#385f71',
           tabBarInactiveTintColor: 'white',
           tabBarStyle,
           tabBarLabelStyle: {
@@ -61,7 +61,7 @@ function MainNavigation() {
           name="Home"
           component={NewsListings}
           options={() => ({
-            tabBarLabel: 'Home',
+            tabBarLabel: 'News Listing',
             tabBarIcon: ({color, size}) => (
               <Image
                 source={icons.home}
