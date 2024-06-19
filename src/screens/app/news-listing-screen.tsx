@@ -9,9 +9,6 @@ import {INews} from '../../common/types';
 import {AppStackParams} from '../../navigation/app-navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 type ReviewChallengeProps = NativeStackScreenProps<
   AppStackParams,
   'NewsListing'
