@@ -1,5 +1,4 @@
-import {useState, useContext} from 'react';
-import {MainContext} from '../../../context/MainContext';
+import {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,16 +6,18 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {AuthStackParams} from '../../navigation/auth-navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import HideKeyboard from '../../components/hideKeyboard';
+import {BackButton} from '../../components/back-button';
 
 type SignupScreenProps = NativeStackScreenProps<AuthStackParams, 'Signup'>;
 
-const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
-  // const { setUser } = useContext(MainContext);
+const SignupScreen: React.FC<SignupScreenProps> = ({navigation}) => {
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -25,7 +26,13 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
   const handleSignup = async () => {
     setIsLoading(true);
     try {
-      navigation.navigate('SignupWithGoogle');
+      const userData = {fullName, email, phoneNumber};
+
+      if (fullName && email && phoneNumber) {
+        navigation.navigate('SignupWithGoogle', {userData});
+      } else {
+        Alert.alert('Please Enter your Information');
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -36,22 +43,20 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <HideKeyboard>
-        <View style={styles.main}>
-          <TouchableOpacity
-            style={styles.backNavigation}
-            onPress={() => navigation.goBack()}>
-            <Text style={styles.iconText}>Back</Text>
-          </TouchableOpacity>
-
-          <View style={styles.headingTextContainer}>
-            <Text style={styles.signUpText}>SIGN UP</Text>
-            <Text>
-              New to the App? Click on "Continue" to store your information and
-              continue to Sign Up
-            </Text>
-          </View>
+        <ScrollView
+          style={styles.main}
+          contentContainerStyle={{justifyContent: 'center'}}>
+          <BackButton style={styles.backNavigation} />
 
           <View style={styles.formContainer}>
+            <View style={styles.headingTextContainer}>
+              <Text style={styles.signUpText}>SIGN UP</Text>
+              <Text>
+                New to the App? Click on "Continue" to store your information
+                and continue to Sign Up
+              </Text>
+            </View>
+
             <View style={styles.inputMain}>
               <TextInput
                 style={styles.input}
@@ -95,7 +100,7 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
               </View>
             )}
           </TouchableOpacity>
-        </View>
+        </ScrollView>
       </HideKeyboard>
     </SafeAreaView>
   );
@@ -109,13 +114,13 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     marginVertical: 50,
-    justifyContent: 'center',
   },
   formContainer: {
     flex: 1,
     justifyContent: 'center',
+    gap: 20,
   },
   iconText: {
     fontSize: 18,
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#385f71',
     borderRadius: 10,
-    // marginTop: 20,
+    marginTop: 40,
   },
   continueBtnText: {
     color: 'white',
