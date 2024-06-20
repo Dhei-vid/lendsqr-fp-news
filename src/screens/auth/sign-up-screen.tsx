@@ -7,11 +7,11 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import {AuthStackParams} from '../../navigation/auth-navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import HideKeyboard from '../../components/hideKeyboard';
-import LogoImage from '../../assets/logo.svg';
 
 type SignupScreenProps = NativeStackScreenProps<AuthStackParams, 'Signup'>;
 
@@ -20,21 +20,17 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSignup = async () => {
-    // try {
-    //   const newUser = await userSignup({
-    //     name,
-    //     email,
-    //     password,
-    //     confirmPassword,
-    //     terms,
-    //   });
-    //   setUser(newUser);
-    // } catch (error) {
-    //   console.log(error);
-    //   alert(error);
-    // }
+    setIsLoading(true);
+    try {
+      navigation.navigate('SignupWithGoogle');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -45,10 +41,17 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
             style={styles.backNavigation}
             onPress={() => navigation.goBack()}>
             <Text style={styles.iconText}>Back</Text>
-            <Text style={styles.iconText}>SIGN UP</Text>
           </TouchableOpacity>
+
+          <View style={styles.headingTextContainer}>
+            <Text style={styles.signUpText}>SIGN UP</Text>
+            <Text>
+              New to the App? Click on "Continue" to store your information and
+              continue to Sign Up
+            </Text>
+          </View>
+
           <View style={styles.formContainer}>
-            {/* <LogoImage style={styles.Logo} width={40} height={50} /> */}
             <View style={styles.inputMain}>
               <TextInput
                 style={styles.input}
@@ -83,13 +86,14 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation, route}) => {
             </View>
           </View>
 
-          <TouchableOpacity
-            style={styles.continueBtn}
-            onPress={() => {
-              handleSignup();
-              navigation.navigate('SignupWithGoogle');
-            }}>
-            <Text style={styles.continueBtnText}>Continue with Google</Text>
+          <TouchableOpacity style={styles.continueBtn} onPress={handleSignup}>
+            {isLoading ? (
+              <ActivityIndicator size={'small'} color={'white'} />
+            ) : (
+              <View>
+                <Text style={styles.continueBtnText}>Continue</Text>
+              </View>
+            )}
           </TouchableOpacity>
         </View>
       </HideKeyboard>
@@ -117,7 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   backNavigation: {
-    marginBottom: 20,
+    marginBottom: 100,
   },
   inputMain: {
     marginBottom: 15,
@@ -138,5 +142,12 @@ const styles = StyleSheet.create({
   },
   continueBtnText: {
     color: 'white',
+  },
+  signUpText: {
+    fontSize: 25,
+    color: 'black',
+  },
+  headingTextContainer: {
+    gap: 15,
   },
 });

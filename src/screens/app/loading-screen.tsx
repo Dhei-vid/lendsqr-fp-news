@@ -1,12 +1,12 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useRef, useEffect} from 'react';
-import {View, Animated, Easing, StyleSheet, Text} from 'react-native';
-// import { RootStackParams } from '../../navigation/root.navigation';
-// import { styles } from './styles';
-import Logo from '../assets/Lend_Logo.svg';
+import {View, Animated, Easing, StyleSheet, Image} from 'react-native';
 
 const LoadingScreen = () => {
   const bounceAnim = useRef(new Animated.Value(0)).current;
+
+  const icons = {
+    logo: require('../../assets/Lend_Logo.png'),
+  };
 
   useEffect(() => {
     Animated.loop(
@@ -35,8 +35,7 @@ const LoadingScreen = () => {
   return (
     <View style={styles.main}>
       <Animated.View style={{transform: [{translateY: translateY}]}}>
-        {/* <Logo width={30} height={30} /> */}
-        <Text>Looading...</Text>
+        <Image source={icons.logo} style={{height: 50, width: 50}} />
       </Animated.View>
     </View>
   );

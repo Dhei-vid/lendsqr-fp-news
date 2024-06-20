@@ -4,6 +4,7 @@ import GetStartedScreen from '../screens/auth/get-started-screen';
 import LogInScreen from '../screens/auth/log-in-screen';
 import SignupScreen from '../screens/auth/sign-up-screen';
 import SignUpWithGoogle from '../screens/auth/sign-up-google';
+import {UserSignUpInput} from '../common/types';
 
 const Stack = createNativeStackNavigator<AuthStackParams>();
 
@@ -11,7 +12,7 @@ export type AuthStackParams = {
   GetStarted: undefined;
   Login: undefined;
   Signup: undefined;
-  SignupWithGoogle: undefined;
+  SignupWithGoogle: {userData: UserSignUpInput};
 };
 
 function AuthNavigation() {

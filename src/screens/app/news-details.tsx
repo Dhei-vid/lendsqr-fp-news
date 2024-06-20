@@ -19,16 +19,8 @@ type ReviewChallengeProps = NativeStackScreenProps<
 >;
 
 const NewsDetail: React.FC<ReviewChallengeProps> = ({navigation, route}) => {
-  const {
-    Title,
-    Source,
-    Url,
-    PublishedOn,
-    Description,
-    SourceNationality,
-    Summary,
-    Categories,
-  } = route.params.data;
+  const {Title, Source, PublishedOn, Description, Summary, Categories} =
+    route.params.data;
 
   const formattedDate = format(new Date(PublishedOn), 'MMM dd yyyy');
 

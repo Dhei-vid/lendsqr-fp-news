@@ -4,41 +4,45 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
+  Dimensions,
 } from 'react-native';
 import {AuthStackParams} from '../../navigation/auth-navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import GetStartedLogo from '../../assets/HeroIllustration.svg';
+
+const windowWidth = Dimensions.get('window').width;
 
 type GetStartedScreenProps = NativeStackScreenProps<
   AuthStackParams,
   'GetStarted'
 >;
 
-const icons = {
-  logo: require('../../assets/Lend_Logo.png'),
-};
-
 const GetStartedScreen: React.FC<GetStartedScreenProps> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.main}>
-        <Text>Get Started Screen 2</Text>
-        <View>
-          <Image source={icons.logo} style={{height: 100, width: 100}} />
-          {/* <Image source={{uri: icons.logo}} style={styles.logo} /> */}
+        <View style={styles.content}>
+          <View style={styles.getstartedImage}>
+            <GetStartedLogo width={350} height={300} />
+          </View>
+          <Text style={styles.headerText}>
+            The best loan management system for smart lenders
+          </Text>
         </View>
 
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate('Signup')}>
-          <Text style={styles.btnText}>Sign Up</Text>
-        </TouchableOpacity>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('Signup')}>
+            <Text style={styles.btnText}>Sign Up</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.btnText}>Log in</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.btnText}>Log in</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -53,23 +57,34 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 50,
     justifyContent: 'center',
-    gap: 20,
+    gap: 30,
+  },
+  content: {
+    justifyContent: 'center',
+    gap: 30,
   },
   btn: {
     height: 50,
-    backgroundColor: '#385f71',
+    backgroundColor: '#349898',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     padding: 10,
-    // width: 120,
-    // height: 50,
   },
   btnText: {
     color: 'white',
   },
-  logo: {
-    width: 100,
-    height: 100,
+  getstartedImage: {
+    padding: 0,
+    margin: 0,
+  },
+  headerText: {
+    fontWeight: '700',
+    fontSize: 35,
+    color: 'black',
+  },
+  btnContainer: {
+    marginVertical: 20,
+    gap: 10,
   },
 });

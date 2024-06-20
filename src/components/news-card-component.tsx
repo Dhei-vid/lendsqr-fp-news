@@ -17,7 +17,7 @@ interface INewsCard {
 }
 
 const NewsCard: React.FC<INewsCard> = ({data, onClick}) => {
-  const {Title, Description, PublishedOn, Categories} = data;
+  const {Title, PublishedOn, Categories} = data;
   const date = format(new Date(PublishedOn), 'MMM dd yyyy');
 
   return (
