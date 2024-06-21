@@ -21,7 +21,13 @@ npm run android
 npm run ios
 ```
 
-## Step 4: Project Tree
+## Step 4: Start the Metro Server (Make sure your emulator is running)
+```bash
+# using npm
+npm start
+```
+
+## Project Tree
 ```bash
 📦 
 ├─ .bundle
@@ -170,11 +176,6 @@ npm run ios
 
 ```
 
-## Step 4: Start the Metro Server (Make sure your emulator is running)
-```bash
-# using npm
-npm start
-```
 
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
