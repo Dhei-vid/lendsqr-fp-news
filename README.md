@@ -3,25 +3,29 @@
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: clone the project
-bash
+```bash
 # using npm
 git clone "project link"
+```
 
 ## Step 2: install dependencies
-bash
+```bash
 # using npm
 npm install
+```
 
 ## Step 3: Run Android and Ios builds 
-bash
+```bash
 # using npm
 npm run android 
-npm run ios 
+npm run ios
+```
 
 ## Step 4: Start the Metro Server (Make sure your emulator is running)
-bash
+```bash
 # using npm
 npm start
+```
 
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
