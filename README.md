@@ -23,7 +23,6 @@ npm run ios
 
 ## Step 4: Project Tree
 ```bash
-```
 📦 
 ├─ .bundle
 │  └─ config
