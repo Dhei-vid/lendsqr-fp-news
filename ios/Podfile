@@ -17,10 +17,17 @@ end
 target 'LendsqrFrNews' do
   config = use_native_modules!
 
+  pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+  pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
+  pod 'RNFBCrashlytics', :path => '../node_modules/@react-native-firebase/crashlytics'
+  pod 'RNFBPerf', :path => '../node_modules/@react-native-firebase/perf'
+  pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
+  pod 'RNFBDatabase', :path => '../node_modules/@react-native-firebase/database'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    :app_path => "#{Pod::Config.instance.installation_root}/.." 
   )
 
   target 'LendsqrFrNewsTests' do

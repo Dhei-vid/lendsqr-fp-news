@@ -12,7 +12,6 @@ function RootNavigation() {
   const context = useContext(MainContext);
 
   if (!context) return null;
-
   const {isAuth, isLoading} = context;
 
   return (

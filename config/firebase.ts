@@ -2,7 +2,6 @@ import firebase from '@react-native-firebase/app';
 import * as _storage from '@react-native-firebase/storage';
 import * as _firestore from '@react-native-firebase/firestore';
 import * as _analytics from '@react-native-firebase/analytics';
-import * as _crashlytics from '@react-native-firebase/crashlytics';
 import * as _performance from '@react-native-firebase/perf';
 import * as _auth from '@react-native-firebase/auth';
 
@@ -26,21 +25,16 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 // Create instances or initialize modules
 const firestore = _firestore.default();
 const auth = _auth.default();
 const storage = _storage.default();
 const performance = _performance.default();
 const analytics = _analytics.default();
-const crashlytics = _crashlytics.default();
 
 // Export named instances
-export {
-  firebase as default,
-  firestore,
-  auth,
-  analytics,
-  crashlytics,
-  performance,
-  storage,
-};
+export {firebase, firestore, auth, analytics, performance, storage};

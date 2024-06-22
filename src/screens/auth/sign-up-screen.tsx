@@ -89,17 +89,16 @@ const SignupScreen: React.FC<SignupScreenProps> = ({navigation}) => {
                 value={phoneNumber}
               />
             </View>
+            <TouchableOpacity style={styles.continueBtn} onPress={handleSignup}>
+              {isLoading ? (
+                <ActivityIndicator size={'small'} color={'white'} />
+              ) : (
+                <View>
+                  <Text style={styles.continueBtnText}>Continue</Text>
+                </View>
+              )}
+            </TouchableOpacity>
           </View>
-
-          <TouchableOpacity style={styles.continueBtn} onPress={handleSignup}>
-            {isLoading ? (
-              <ActivityIndicator size={'small'} color={'white'} />
-            ) : (
-              <View>
-                <Text style={styles.continueBtnText}>Continue</Text>
-              </View>
-            )}
-          </TouchableOpacity>
         </ScrollView>
       </HideKeyboard>
     </SafeAreaView>
@@ -114,12 +113,12 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    paddingHorizontal: 20,
     marginVertical: 50,
   },
   formContainer: {
     flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 20,
     gap: 20,
   },
   iconText: {
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#385f71',
+    backgroundColor: '#349898',
     borderRadius: 10,
     marginTop: 40,
   },

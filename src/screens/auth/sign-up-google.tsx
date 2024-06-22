@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   googleBtnContainer: {
     marginVertical: 30,
     padding: 10,
-    backgroundColor: 'gray',
+    backgroundColor: '#349898',
     borderRadius: 10,
   },
   googleBtn: {
