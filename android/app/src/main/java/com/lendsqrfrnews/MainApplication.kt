@@ -10,6 +10,15 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
+import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
+import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
+import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
+import io.invertase.firebase.perf.ReactNativeFirebasePerfPackage;
+// import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+
 
 class MainApplication : Application(), ReactApplication {
 
@@ -19,6 +28,15 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
+              add(ReactNativeFirebaseStoragePackage())
+              add(ReactNativeFirebaseAuthPackage())
+              add(ReactNativeFirebaseDatabasePackage())
+              add(ReactNativeFirebaseCrashlyticsPackage())
+              add(ReactNativeFirebaseMessagingPackage())
+              add(ReactNativeFirebaseFirestorePackage())
+              add(ReactNativeFirebasePerfPackage())
+              // add(ReactNativeFirebaseAnalyticsPackage())
+              add(ReactNativeFirebaseAppPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"

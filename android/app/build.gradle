@@ -108,10 +108,15 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation platform("com.google.firebase:firebase-bom:33.1.0")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-perf")
+    implementation project(path: ":@react-native-firebase_database")
+    implementation project(path: ":@react-native-firebase_messaging")
+    implementation project(path: ":@react-native-firebase_crashlytics")
+    implementation project(path: ":@react-native-firebase_perf")
+    implementation project(':@react-native-firebase_firestore')
+    // implementation project(path: ":@react-native-firebase_analytics")
+    implementation project(path: ":@react-native-firebase_auth")
+    implementation project(path: ":@react-native-firebase_app")
+
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
@@ -120,6 +125,44 @@ dependencies {
     }
 }
 
-apply plugin: "com.google.gms.google-services"
+androidComponents {
+    // For react-native-firebase_app
+     onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_app:packageDebugResources').dependsOn(':@react-native-firebase_app:generateDebugResValues')
+    }
+
+    // For react-native-firebase_analytics
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_analytics:packageDebugResources').dependsOn(':@react-native-firebase_analytics:generateDebugResValues')
+    }
+    
+    // For react-native-firebase_auth
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_auth:packageDebugResources').dependsOn(':@react-native-firebase_auth:generateDebugResValues')
+    }
+
+    // For react-native-firebase_firestore
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_firestore:packageDebugResources').dependsOn(':@react-native-firebase_firestore:generateDebugResValues')
+    }
+
+    // For react-native-firebase_messaging
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_messaging:packageDebugResources').dependsOn(':@react-native-firebase_messaging:generateDebugResValues')
+    }
+
+    // For react-native-firebase_crashlytics
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_crashlytics:packageDebugResources').dependsOn(':@react-native-firebase_crashlytics:generateDebugResValues')
+    }
+
+    // For react-native-firebase_perf
+    onVariants { variant ->
+        tasks.getByPath(':react-native-firebase_perf:packageDebugResources').dependsOn(':@react-native-firebase_perf:generateDebugResValues')
+    }
+}
+
+apply plugin: 'com.google.gms.google-services' 
+
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
