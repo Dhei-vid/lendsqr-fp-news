@@ -1,79 +1,183 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
-# Getting Started
+# Getting Started 
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+## Step 1: clone the project
+```bash
+# using npm
+git clone "project link"
+```
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Step 2: install dependencies
+```bash
+# using npm
+npm install
+```
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Step 3: Run Android and Ios builds 
+```bash
+# using npm
+npm run android 
+npm run ios
+```
 
+## Step 4: Start the Metro Server (Make sure your emulator is running)
 ```bash
 # using npm
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
+## Project Tree
 ```bash
-# using npm
-npm run android
+📦 
+├─ .bundle
+│  └─ config
+├─ .env
+├─ .eslintrc.js
+├─ .gitignore
+├─ .prettierrc.js
+├─ .watchmanconfig
+├─ .yarn
+│  └─ releases
+│     └─ yarn-3.6.4.cjs
+├─ .yarnrc.yml
+├─ App.tsx
+├─ Gemfile
+├─ README.md
+├─ __tests__
+│  └─ App.test.tsx
+├─ android
+│  ├─ app
+│  │  ├─ build.gradle
+│  │  ├─ debug.keystore
+│  │  ├─ google-services.json
+│  │  ├─ proguard-rules.pro
+│  │  └─ src
+│  │     ├─ debug
+│  │     │  └─ AndroidManifest.xml
+│  │     └─ main
+│  │        ├─ AndroidManifest.xml
+│  │        ├─ java
+│  │        │  └─ com
+│  │        │     └─ lendsqrfrnews
+│  │        │        ├─ MainActivity.kt
+│  │        │        └─ MainApplication.kt
+│  │        └─ res
+│  │           ├─ drawable
+│  │           │  └─ rn_edit_text_material.xml
+│  │           ├─ mipmap-hdpi
+│  │           │  ├─ ic_launcher.png
+│  │           │  └─ ic_launcher_round.png
+│  │           ├─ mipmap-mdpi
+│  │           │  ├─ ic_launcher.png
+│  │           │  └─ ic_launcher_round.png
+│  │           ├─ mipmap-xhdpi
+│  │           │  ├─ ic_launcher.png
+│  │           │  └─ ic_launcher_round.png
+│  │           ├─ mipmap-xxhdpi
+│  │           │  ├─ ic_launcher.png
+│  │           │  └─ ic_launcher_round.png
+│  │           ├─ mipmap-xxxhdpi
+│  │           │  ├─ ic_launcher.png
+│  │           │  └─ ic_launcher_round.png
+│  │           ├─ values
+│  │           │  ├─ strings.xml
+│  │           │  └─ styles.xml
+│  │           └─ xml
+│  │              └─ registration.xml
+│  ├─ build.gradle
+│  ├─ gradle.properties
+│  ├─ gradle
+│  │  └─ wrapper
+│  │     ├─ gradle-wrapper.jar
+│  │     └─ gradle-wrapper.properties
+│  ├─ gradlew
+│  ├─ gradlew.bat
+│  └─ settings.gradle
+├─ app.json
+├─ babel.config.js
+├─ config
+│  └─ firebase.ts
+├─ context
+│  └─ MainContext.tsx
+├─ declaration.d.ts
+├─ env.d.ts
+├─ firebase
+│  ├─ user.ts
+│  └─ utils.ts
+├─ index.js
+├─ ios
+│  ├─ .xcode.env
+│  ├─ LendsqrFrNews.xcodeproj
+│  │  ├─ project.pbxproj
+│  │  └─ xcshareddata
+│  │     └─ xcschemes
+│  │        └─ LendsqrFrNews.xcscheme
+│  ├─ LendsqrFrNews
+│  │  ├─ AppDelegate.h
+│  │  ├─ AppDelegate.mm
+│  │  ├─ Images.xcassets
+│  │  │  ├─ AppIcon.appiconset
+│  │  │  │  └─ Contents.json
+│  │  │  └─ Contents.json
+│  │  ├─ Info.plist
+│  │  ├─ LaunchScreen.storyboard
+│  │  ├─ PrivacyInfo.xcprivacy
+│  │  └─ main.m
+│  ├─ LendsqrFrNewsTests
+│  │  ├─ Info.plist
+│  │  └─ LendsqrFrNewsTests.m
+│  └─ Podfile
+├─ jest.config.js
+├─ metro.config.js
+├─ package-lock.json
+├─ package.json
+├─ src
+│  ├─ assets
+│  │  ├─ HeroIllustration.svg
+│  │  ├─ Lend_Logo.png
+│  │  ├─ Lend_Logo.svg
+│  │  ├─ chevron_left.svg
+│  │  ├─ home.png
+│  │  └─ icons8-google.svg
+│  ├─ common
+│  │  ├─ constants.ts
+│  │  ├─ helpers.ts
+│  │  └─ types.ts
+│  ├─ components
+│  │  ├─ back-button.tsx
+│  │  ├─ hideKeyboard.tsx
+│  │  ├─ news-card-component.tsx
+│  │  └─ separator.tsx
+│  ├─ middleware
+│  │  └─ logger.ts
+│  ├─ navigation
+│  │  ├─ app-navigation.tsx
+│  │  ├─ auth-navigation.tsx
+│  │  ├─ main-navigation.tsx
+│  │  └─ root-navigation.tsx
+│  ├─ screens
+│  │  ├─ app
+│  │  │  ├─ loading-screen.tsx
+│  │  │  ├─ news-details.tsx
+│  │  │  └─ news-listing-screen.tsx
+│  │  └─ auth
+│  │     ├─ get-started-screen.tsx
+│  │     ├─ log-in-screen.tsx
+│  │     ├─ sign-up-google.tsx
+│  │     └─ sign-up-screen.tsx
+│  └─ store
+│     ├─ news-slice.ts
+│     └─ store.ts
+├─ tsconfig.json
+└─ yarn.lock
+```
+©generated by [Project Tree Generator](https://woochanleee.github.io/project-tree-generator)
 
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
 
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
